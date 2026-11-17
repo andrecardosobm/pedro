@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Surpresa</title>
   <meta name="theme-color" content="#111111">
 
@@ -11,6 +11,7 @@
 
   <link rel="stylesheet" href="css/style.css">
   <script src="js/intro.js" defer></script>
+  <script src="js/carousel.js" defer></script>
 </head>
 <body>
 
@@ -20,10 +21,21 @@
   </div>
   <button type="button" id="intro-skip" class="intro-skip">Pular animação</button>
 
-  <!-- ============ O QUE APARECE DEPOIS DA ANIMAÇÃO ============ -->
+  <!-- ============ CARROSSEL QUE APARECE DEPOIS DA ANIMAÇÃO ============ -->
+  <!-- Fotos: img/foto1 até img/foto5 (.jpg, .jpeg, .png ou .webp). Veja o README. -->
   <main class="site">
-    <!-- Para trocar a imagem, substitua o arquivo img/imagem.jpg -->
-    <img class="reveal" src="img/imagem.jpg" alt="Bandeja com hambúrgueres, batatas fritas com molho de queijo e uma lata de refrigerante">
+    <section class="carousel" aria-roledescription="carrossel" aria-label="Fotos">
+      <div class="carousel__track">
+        <noscript><img class="slide-noscript" src="img/foto1.jpg" alt=""></noscript>
+      </div>
+      <button type="button" class="carousel__btn carousel__btn--prev" aria-label="Foto anterior">
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button type="button" class="carousel__btn carousel__btn--next" aria-label="Próxima foto">
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="carousel__dots" role="group" aria-label="Escolher foto"></div>
+    </section>
   </main>
 
 </body>

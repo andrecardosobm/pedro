@@ -9,36 +9,132 @@ body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
-/* a imagem ocupa a tela inteira, centralizada, sem cortar */
 .site {
-  position: relative;
   height: 100vh;
   height: 100dvh;
+}
+
+/* ===================== Carrossel ===================== */
+.carousel {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+.carousel__track {
+  display: flex;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+.carousel__track::-webkit-scrollbar { display: none; }
+
+/* cada foto ocupa a tela inteira, centralizada e sem cortes */
+.slide {
+  position: relative;
+  flex: 0 0 100%;
+  height: 100%;
   display: grid;
   place-items: center;
   overflow: hidden;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
 }
 /* fundo: a mesma foto, ampliada e desfocada, preenchendo as sobras da tela */
-.site::before {
-  content: "";
+.slide__bg {
   position: absolute;
   inset: -40px;
-  background: url("../img/imagem.jpg") center / cover no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   filter: blur(28px) brightness(.55);
 }
-.reveal {
+.slide img,
+.slide-noscript {
   position: relative;
   display: block;
+  width: auto;
+  height: auto;
   max-width: 100vw;
   max-height: 100vh;
   max-height: 100dvh;
-  width: auto;
-  height: auto;
   object-fit: contain;
 }
-/* em telas grandes, amplia a imagem até a altura da tela */
+.slide-noscript { margin: auto; }
+/* em telas grandes, amplia a foto até a altura da tela */
 @media (min-width: 700px) {
-  .reveal { height: 100vh; height: 100dvh; }
+  .slide img { height: 100vh; height: 100dvh; }
+}
+
+/* setas e bolinhas: só aparecem com 2 fotos ou mais */
+.carousel__btn,
+.carousel__dots { display: none; }
+
+.carousel--multi .carousel__btn {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 48px;
+  height: 48px;
+  margin-top: -24px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, .35);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, .45);
+  color: #fff;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background-color .2s;
+}
+.carousel__btn:hover { background: rgba(0, 0, 0, .65); }
+.carousel__btn--prev { left: 16px; }
+.carousel__btn--next { right: 16px; }
+
+.carousel--multi .carousel__dots {
+  display: flex;
+  gap: 2px;
+  position: absolute;
+  left: 50%;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  z-index: 2;
+  transform: translateX(-50%);
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, .4);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.carousel__dot {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.carousel__dot::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, .55);
+  transition: width .2s, background-color .2s;
+}
+.carousel__dot[aria-current="true"]::before { width: 20px; background: #fff; }
+
+.carousel__btn:focus-visible,
+.carousel__dot:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel__dot::before,
+  .carousel__btn { transition: none; }
 }
 
 /* ===================== Animação de abertura ===================== */
@@ -48,8 +144,8 @@ body {
   display: block;
   position: fixed; inset: 0; z-index: 1000;
   cursor: pointer;
-  /* cor de fundo até o primeiro quadro do canvas */
-  background: radial-gradient(circle at 50% 50%, #3e0f1a 0, #94404f 4vmin, #bf6f75 18vmin, #d89a90 42vmin, #e7b8a8 90vmin);
+  /* cor de fundo até o primeiro quadro do canvas (mesma paleta de js/intro.js) */
+  background: radial-gradient(circle at 50% 50%, #140807 0, #3f2219 4vmin, #573224 18vmin, #6e4430 42vmin, #80553a 90vmin);
   /* segurança: se o JavaScript falhar, a camada some sozinha */
   animation: intro-failsafe .4s ease 8s forwards;
 }
@@ -63,7 +159,7 @@ body {
   display: block;
   position: fixed; right: 16px; bottom: 16px; z-index: 1001;
   padding: 10px 16px; border: 1px solid rgba(255, 255, 255, .5); border-radius: 999px;
-  background: rgba(40, 8, 16, .35); color: #fff;
+  background: rgba(20, 10, 6, .4); color: #fff;
   font: 500 .85rem/1 inherit; cursor: pointer;
   backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
   transition: opacity .3s ease;
@@ -72,7 +168,7 @@ body {
 .intro-skip:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
 .intro-skip.is-hidden { opacity: 0; pointer-events: none; }
 
-/* trava a rolagem e dá um leve "zoom" na imagem enquanto a abertura acontece */
+/* trava a rolagem e dá um leve "zoom" no carrossel enquanto a abertura acontece */
 html.intro-lock, html.intro-lock body { overflow: hidden; }
 html.intro-lock .site { transform: scale(1.12); }
 html.intro-lock.intro-opening .site { transform: none; transition: transform 1.3s cubic-bezier(.2, .7, .2, 1); }
