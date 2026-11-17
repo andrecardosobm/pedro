@@ -29,6 +29,7 @@ body {
 }
 
 img { max-width: 100%; display: block; }
+[hidden] { display: none !important; }
 a { color: inherit; }
 h1, h2, h3 { line-height: 1.15; margin: 0 0 .5em; }
 h1, h2 { font-family: var(--font-serif); font-weight: 600; letter-spacing: -.01em; }
@@ -152,12 +153,13 @@ p { margin: 0 0 1em; }
 /* Sobre */
 .about { display: grid; grid-template-columns: 340px 1fr; gap: clamp(32px, 5vw, 64px); align-items: center; }
 .about__photo {
+  position: relative;
   aspect-ratio: 4 / 5; border-radius: var(--radius);
   background: linear-gradient(160deg, #1c4f4c, var(--brand));
   display: grid; place-items: center; overflow: hidden;
 }
 .about__photo span { font: 600 4rem/1 var(--font-serif); color: rgba(255, 255, 255, .85); }
-.about__photo img { width: 100%; height: 100%; object-fit: cover; }
+.about__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
 .about__reg { color: var(--accent); font-weight: 600; font-size: .92rem; }
 .about__list { margin: 0; padding-left: 1.1em; color: var(--ink-soft); }
 .about__list li { margin-bottom: 4px; }
@@ -232,7 +234,50 @@ p { margin: 0 0 1em; }
 }
 .intro-skip.is-hidden { opacity: 0; pointer-events: none; }
 
-/* trava a rolagem e dá um leve "zoom" no site enquanto a abertura acontece */
+/* trava a rolagem e dá um leve "zoom" no que está por baixo enquanto a abertura acontece */
 html.intro-lock, html.intro-lock body { overflow: hidden; }
 html.intro-lock .site { transform: scale(1.06); transform-origin: 50% 50vh; }
 html.intro-lock.intro-opening .site { transform: none; transition: transform 1.2s cubic-bezier(.2, .7, .2, 1); }
+html.intro-lock .welcome__inner { transform: scale(1.1); }
+html.intro-lock.intro-opening .welcome__inner { transform: none; transition: transform 1.3s cubic-bezier(.2, .7, .2, 1); }
+
+/* ===================== Tela de boas-vindas ===================== */
+.welcome { display: none; }
+
+html.welcome-active, html.welcome-active body { overflow: hidden; }
+html.welcome-active .welcome {
+  display: flex;
+  position: fixed; inset: 0; z-index: 900;
+  padding: 32px 16px;
+  overflow-y: auto;
+  text-align: center;
+  background:
+    radial-gradient(55% 45% at 50% 40%, rgba(15, 59, 57, .09), rgba(15, 59, 57, 0) 70%),
+    var(--bg);
+  transition: opacity .5s ease;
+}
+.welcome__inner {
+  margin: auto;
+  max-width: 440px;
+  display: flex; flex-direction: column; align-items: center;
+  transition: transform .5s ease;
+}
+.welcome__photo {
+  position: relative;
+  width: clamp(150px, 40vw, 200px); aspect-ratio: 1;
+  margin-bottom: 28px;
+  border-radius: 50%; overflow: hidden;
+  display: grid; place-items: center;
+  background: linear-gradient(160deg, #1c4f4c, var(--brand));
+  box-shadow: 0 0 0 6px var(--surface), 0 0 0 7px var(--line), 0 18px 40px rgba(20, 42, 41, .16);
+}
+.welcome__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
+.welcome__photo span { font: 600 3.2rem/1 var(--font-serif); color: rgba(255, 255, 255, .85); }
+.welcome h2 { font-size: clamp(1.9rem, 1.4rem + 2vw, 2.6rem); margin: 0 0 .25em; }
+.welcome__role { margin: 0; font-weight: 600; }
+.welcome__reg { margin: .3rem 0 1rem; color: var(--accent); font-size: .9rem; font-weight: 600; }
+.welcome__text { margin: 0 0 28px; color: var(--ink-soft); }
+.btn--lg { min-height: 54px; padding: 0 30px; font-size: 1rem; gap: 10px; }
+
+.welcome.welcome--leave { opacity: 0; pointer-events: none; }
+.welcome--leave .welcome__inner { transform: scale(.97); }

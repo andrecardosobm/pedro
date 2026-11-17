@@ -24,6 +24,24 @@
   </div>
   <button type="button" id="intro-skip" class="intro-skip">Pular animação</button>
 
+  <!-- ============ TELA DE BOAS-VINDAS (aparece quando a animação termina) ============ -->
+  <div id="welcome" class="welcome" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
+    <div class="welcome__inner">
+      <div class="welcome__photo">
+        <!-- FOTO: coloque o arquivo em img/medico.jpg (a mesma foto aparece na seção "Sobre").
+             Enquanto o arquivo não existir, aparecem as iniciais. -->
+        <img src="img/medico.jpg" alt="Foto do Dr. Nome Sobrenome" onerror="this.hidden=true">
+        <span aria-hidden="true">NS</span>
+      </div>
+      <p class="eyebrow">Boas-vindas</p>
+      <h2 id="welcome-title">Dr. Nome Sobrenome</h2>
+      <p class="welcome__role">Coloproctologista</p>
+      <p class="welcome__reg">CRM-UF 000000 · RQE 00000</p>
+      <p class="welcome__text">Cuidado especializado, com acolhimento e privacidade.</p>
+      <button type="button" id="welcome-enter" class="btn btn--primary btn--lg">Entrar no site <span aria-hidden="true">→</span></button>
+    </div>
+  </div>
+
   <!-- ============ SITE ============ -->
   <div class="site">
 
@@ -147,9 +165,10 @@
       <!-- Sobre -->
       <section id="sobre" class="section">
         <div class="container about">
-          <div class="about__photo" role="img" aria-label="Foto do Dr. Nome Sobrenome">
-            <!-- Troque este bloco por: <img src="img/foto.jpg" alt="Dr. Nome Sobrenome"> -->
-            <span>NS</span>
+          <div class="about__photo">
+            <!-- Mesma foto da tela de boas-vindas: img/medico.jpg -->
+            <img src="img/medico.jpg" alt="Foto do Dr. Nome Sobrenome" onerror="this.hidden=true">
+            <span aria-hidden="true">NS</span>
           </div>
           <div class="about__copy">
             <p class="eyebrow">Sobre</p>
