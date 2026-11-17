@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dr. Nome Sobrenome · Coloproctologista</title>
+  <meta name="description" content="Coloproctologista em [Cidade]. Tratamento de hemorroidas, fissura, fístula, colonoscopia e prevenção do câncer colorretal, com acolhimento e privacidade.">
+  <meta name="theme-color" content="#0f3b39">
+
+  <!-- Liga a animação de abertura somente se houver JavaScript -->
+  <script>document.documentElement.classList.add('has-intro');</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/intro.js" defer></script>
+</head>
+<body>
+
+  <!-- ============ ANIMAÇÃO DE ABERTURA ============ -->
+  <div id="intro" class="intro" aria-hidden="true">
+    <canvas></canvas>
+  </div>
+  <button type="button" id="intro-skip" class="intro-skip">Pular animação</button>
+
+  <!-- ============ SITE ============ -->
+  <div class="site">
+
+    <header class="header">
+      <div class="container header__inner">
+        <a href="#inicio" class="brand" aria-label="Página inicial">
+          <span class="brand__mark" aria-hidden="true">NS</span>
+          <span class="brand__text">
+            <strong>Dr. Nome Sobrenome</strong>
+            <small>Coloproctologia</small>
+          </span>
+        </a>
+        <nav class="nav" aria-label="Principal">
+          <a href="#tratamentos">Tratamentos</a>
+          <a href="#consulta">A consulta</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#duvidas">Dúvidas</a>
+          <a href="#contato">Contato</a>
+        </nav>
+        <a class="btn btn--primary btn--sm" href="https://wa.me/5500000000000?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">Agendar</a>
+      </div>
+    </header>
+
+    <main id="inicio">
+
+      <!-- Hero -->
+      <section class="hero">
+        <div class="container hero__grid">
+          <div class="hero__copy">
+            <p class="eyebrow">Coloproctologista em [Cidade – UF]</p>
+            <h1>Cuidado especializado para o que muita gente tem vergonha de falar.</h1>
+            <p class="lead">Diagnóstico e tratamento de doenças do intestino grosso, reto e ânus, com acolhimento, privacidade e técnicas atuais, da primeira consulta à recuperação.</p>
+            <div class="hero__actions">
+              <a class="btn btn--primary" href="https://wa.me/5500000000000?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">Agendar pelo WhatsApp</a>
+              <a class="btn btn--ghost" href="#tratamentos">Ver tratamentos</a>
+            </div>
+            <ul class="trust">
+              <li>CRM-UF 000000 · RQE 00000</li>
+              <li>Particular e convênios</li>
+              <li>Atendimento discreto</li>
+            </ul>
+          </div>
+
+          <aside class="signs" aria-labelledby="signs-title">
+            <h2 id="signs-title">Quando procurar um proctologista</h2>
+            <ul>
+              <li>Sangramento ao evacuar</li>
+              <li>Dor, ardência ou coceira na região anal</li>
+              <li>Mudança persistente no hábito intestinal</li>
+              <li>Nódulo, inchaço ou secreção no ânus</li>
+              <li>Histórico familiar de câncer colorretal</li>
+            </ul>
+            <p class="signs__note">Sangramento nunca deve ser considerado normal. Quanto antes a avaliação, mais simples costuma ser o tratamento.</p>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Tratamentos -->
+      <section id="tratamentos" class="section">
+        <div class="container">
+          <header class="section__head">
+            <p class="eyebrow">Tratamentos</p>
+            <h2>Do diagnóstico ao tratamento, no mesmo lugar</h2>
+          </header>
+          <div class="cards">
+            <article class="card">
+              <h3>Doença hemorroidária</h3>
+              <p>Tratamento clínico, ambulatorial (como a ligadura elástica) ou cirúrgico, de acordo com o grau e os sintomas.</p>
+            </article>
+            <article class="card">
+              <h3>Fissura anal</h3>
+              <p>Alívio da dor e cicatrização com tratamento clínico e, quando necessário, procedimento cirúrgico.</p>
+            </article>
+            <article class="card">
+              <h3>Fístula e abscesso</h3>
+              <p>Drenagem e técnicas que priorizam a preservação da continência.</p>
+            </article>
+            <article class="card">
+              <h3>Colonoscopia</h3>
+              <p>Exame para investigar sintomas e prevenir doenças, com retirada de pólipos no mesmo procedimento.</p>
+            </article>
+            <article class="card">
+              <h3>Prevenção do câncer colorretal</h3>
+              <p>Rastreamento individualizado conforme idade, sintomas e histórico familiar.</p>
+            </article>
+            <article class="card">
+              <h3>Doenças inflamatórias intestinais</h3>
+              <p>Acompanhamento de doença de Crohn e retocolite ulcerativa.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Como é a consulta -->
+      <section id="consulta" class="section section--tint">
+        <div class="container">
+          <header class="section__head">
+            <p class="eyebrow">A consulta</p>
+            <h2>Sem pressa e sem constrangimento</h2>
+          </header>
+          <ol class="steps">
+            <li>
+              <span class="steps__n">1</span>
+              <h3>Conversa</h3>
+              <p>Você conta o que está sentindo. Nenhuma pergunta é constrangedora aqui.</p>
+            </li>
+            <li>
+              <span class="steps__n">2</span>
+              <h3>Exame rápido e respeitoso</h3>
+              <p>Quando necessário, o exame leva poucos minutos, é feito com privacidade e cada etapa é explicada antes.</p>
+            </li>
+            <li>
+              <span class="steps__n">3</span>
+              <h3>Plano claro</h3>
+              <p>Você sai sabendo o diagnóstico, as opções de tratamento e os próximos passos.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Sobre -->
+      <section id="sobre" class="section">
+        <div class="container about">
+          <div class="about__photo" role="img" aria-label="Foto do Dr. Nome Sobrenome">
+            <!-- Troque este bloco por: <img src="img/foto.jpg" alt="Dr. Nome Sobrenome"> -->
+            <span>NS</span>
+          </div>
+          <div class="about__copy">
+            <p class="eyebrow">Sobre</p>
+            <h2>Dr. Nome Sobrenome</h2>
+            <p class="about__reg">Coloproctologista · CRM-UF 000000 · RQE 00000</p>
+            <p>[Escreva aqui um parágrafo curto sobre você: formação, há quanto tempo atua, onde atende e como gosta de conduzir o cuidado com o paciente.]</p>
+            <ul class="about__list">
+              <li>Graduação em Medicina: [Instituição]</li>
+              <li>Residência em Cirurgia Geral: [Instituição]</li>
+              <li>Residência em Coloproctologia: [Instituição]</li>
+              <li>[Título de especialista / sociedade]</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dúvidas -->
+      <section id="duvidas" class="section section--tint">
+        <div class="container narrow">
+          <header class="section__head">
+            <p class="eyebrow">Dúvidas frequentes</p>
+            <h2>O que os pacientes mais perguntam</h2>
+          </header>
+          <div class="faq">
+            <details>
+              <summary>O exame proctológico dói?</summary>
+              <p>Na grande maioria dos casos, não. O exame é rápido, feito com delicadeza e lubrificante, e pode ser interrompido a qualquer momento se você sentir desconforto.</p>
+            </details>
+            <details>
+              <summary>Preciso de algum preparo para a consulta?</summary>
+              <p>Para a consulta, não. Alguns exames, como a colonoscopia, exigem um preparo intestinal específico, que é explicado com antecedência.</p>
+            </details>
+            <details>
+              <summary>Sangramento ao evacuar é sempre hemorroida?</summary>
+              <p>Não. Hemorroidas e fissuras são causas comuns, mas o sangramento também pode indicar outras doenças, inclusive pólipos e câncer. Por isso, deve sempre ser avaliado por um especialista.</p>
+            </details>
+            <details>
+              <summary>A partir de que idade devo fazer colonoscopia?</summary>
+              <p>Para pessoas sem fatores de risco, o rastreamento costuma ser indicado a partir dos 45 anos. Quem tem histórico familiar ou sintomas pode precisar começar antes. A indicação é individual.</p>
+            </details>
+            <details>
+              <summary>Vocês atendem convênio?</summary>
+              <p>[Informe aqui os convênios aceitos, ou se o atendimento é particular com recibo para reembolso.]</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contato -->
+      <section id="contato" class="section">
+        <div class="container contact">
+          <div>
+            <p class="eyebrow">Contato</p>
+            <h2>Agende sua consulta</h2>
+            <dl class="contact__list">
+              <div><dt>Endereço</dt><dd>Rua Exemplo, 000, Sala 00<br>Bairro, Cidade – UF</dd></div>
+              <div><dt>Telefone</dt><dd><a href="tel:+550000000000">(00) 0000-0000</a></dd></div>
+              <div><dt>WhatsApp</dt><dd><a href="https://wa.me/5500000000000" target="_blank" rel="noopener">(00) 00000-0000</a></dd></div>
+              <div><dt>Horário</dt><dd>Segunda a sexta, das 8h às 18h</dd></div>
+            </dl>
+            <a class="btn btn--primary" href="https://wa.me/5500000000000?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">Agendar pelo WhatsApp</a>
+          </div>
+          <a class="map" href="https://www.google.com/maps/search/?api=1&query=Rua+Exemplo+000" target="_blank" rel="noopener">
+            <span>Ver no mapa</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <p><strong>Dr. Nome Sobrenome</strong> · Coloproctologista · CRM-UF 000000 · RQE 00000</p>
+        <p class="footer__small">As informações deste site têm caráter informativo e não substituem a consulta médica.</p>
+      </div>
+    </footer>
+  </div>
+
+</body>
+</html>
