@@ -14,9 +14,8 @@ Para ver no computador, basta abrir `index.html` no navegador.
 
 ## Trocar a imagem
 
-Substitua o arquivo `img/imagem.jpg` por outro com o mesmo nome. A imagem fica centralizada,
-inteira (sem cortes) e com fundo branco. Se a nova imagem tiver outro fundo, troque o
-`background` de `body` em `css/style.css`.
+Substitua o arquivo `img/imagem.jpg` por outro com o mesmo nome. A imagem fica centralizada e
+inteira (sem cortes). O que sobra da tela é preenchido com a própria foto, ampliada e desfocada.
 
 ## Ajustes da animação
 
