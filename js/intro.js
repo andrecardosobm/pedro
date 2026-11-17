@@ -1,10 +1,8 @@
 /*
- * Animação de abertura + tela de boas-vindas
- * ------------------------------------------
- * 1. Desenha em <canvas> um esfíncter estilizado (pregas radiais em volta de
- *    um orifício) que se dilata até ocupar a tela inteira.
- * 2. A abertura revela a tela de boas-vindas (#welcome), com a foto do médico.
- * 3. O botão "Entrar no site" leva à página principal.
+ * Animação de abertura
+ * ---------------------
+ * Desenha em <canvas> um esfíncter estilizado (pregas radiais em volta de um
+ * orifício) que se dilata até ocupar a tela inteira e revelar a imagem.
  *
  * Ajustes rápidos estão em CONFIG, logo abaixo.
  */
@@ -15,8 +13,7 @@
     holdMs: 700,       // tempo "fechado", com uma leve contração, antes de abrir
     openMs: 1500,      // duração da dilatação
     folds: 11,         // número de pregas principais
-    welcome: true,     // false = vai direto para o site, sem a tela de boas-vindas
-    onlyOncePerSession: false // true = animação e boas-vindas só na primeira visita da sessão
+    onlyOncePerSession: false // true = só mostra na primeira visita da sessão
   };
 
   var root = document.documentElement;
@@ -26,43 +23,6 @@
   var skipBtn = document.getElementById('intro-skip');
   var finished = false;
 
-  // ---------- tela de boas-vindas ----------
-  var welcome = document.getElementById('welcome');
-  var enterBtn = document.getElementById('welcome-enter');
-  var site = document.querySelector('.site');
-  var welcomeOn = false;
-
-  function showWelcome() {
-    if (!CONFIG.welcome || !welcome || !enterBtn) return;
-    welcomeOn = true;
-    root.classList.add('welcome-active');
-    if (site) site.inert = true;
-    enterBtn.addEventListener('click', enterSite);
-    window.addEventListener('keydown', onWelcomeKey);
-  }
-
-  function enterSite() {
-    if (!welcomeOn) return;
-    welcomeOn = false;
-    window.removeEventListener('keydown', onWelcomeKey);
-    if (site) site.inert = false;
-    welcome.classList.add('welcome--leave');
-    setTimeout(function () {
-      root.classList.remove('welcome-active');
-      welcome.remove();
-      var main = document.getElementById('inicio');
-      if (main) { main.setAttribute('tabindex', '-1'); main.focus({ preventScroll: true }); }
-    }, 550);
-  }
-
-  function onWelcomeKey(ev) {
-    if (ev.key === 'Escape') enterSite();
-  }
-
-  function focusWelcome() {
-    if (welcomeOn) enterBtn.focus({ preventScroll: true });
-  }
-
   function finish(instant) {
     if (finished) return;
     finished = true;
@@ -70,9 +30,9 @@
     window.removeEventListener('keydown', onKey);
     window.removeEventListener('resize', resize);
     if (skipBtn) skipBtn.remove();
-    if (instant) { overlay.remove(); focusWelcome(); return; }
+    if (instant) { overlay.remove(); return; }
     overlay.classList.add('intro--fade');
-    setTimeout(function () { overlay.remove(); focusWelcome(); }, 450);
+    setTimeout(function () { overlay.remove(); }, 450);
   }
 
   function seen() {
@@ -86,20 +46,12 @@
   var canvas = overlay.querySelector('canvas');
   var ctx = canvas && canvas.getContext ? canvas.getContext('2d') : null;
 
-  if (CONFIG.onlyOncePerSession && seen()) {
+  // Sem animação (movimento reduzido, navegador sem canvas ou já visto): mostra a imagem direto.
+  if (reduceMotion || !ctx || (CONFIG.onlyOncePerSession && seen())) {
     finish(true);
     return;
   }
   markSeen();
-
-  // A tela de boas-vindas fica por baixo da animação e é revelada por ela.
-  showWelcome();
-
-  // Sem animação (movimento reduzido ou navegador sem canvas): só as boas-vindas.
-  if (reduceMotion || !ctx) {
-    finish(true);
-    return;
-  }
   root.classList.add('intro-lock');
 
   // ---------- geometria ----------
@@ -301,7 +253,7 @@
     ctx.stroke();
     ctx.restore();
 
-    // recorta o orifício: o que está por baixo (boas-vindas ou site) aparece
+    // recorta o orifício: a imagem por baixo aparece
     ctx.globalCompositeOperation = 'destination-out';
     holePath(R, a, rot);
     ctx.fillStyle = '#000';
